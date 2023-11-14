@@ -174,6 +174,36 @@ void _alignPWMTimers(HardwareTimer *HT1, HardwareTimer *HT2, HardwareTimer *HT3)
 // align the timers to end the init
 void _alignPWMTimers(HardwareTimer *HT1, HardwareTimer *HT2, HardwareTimer *HT3, HardwareTimer *HT4)
 {
+  //utiliser ceci 
+  // /**
+  // * @brief  TIM Slave configuration Structure definition
+  // */
+  // //typedef struct
+  // /*{
+  //   uint32_t  SlaveMode;         /*!< Slave mode selection
+  //                                     This parameter can be a value of @ref TIM_Slave_Mode */
+  //   uint32_t  InputTrigger;      /*!< Input Trigger source
+  //                                     This parameter can be a value of @ref TIM_Trigger_Selection */
+  //   uint32_t  TriggerPolarity;   /*!< Input Trigger polarity
+  //                                     This parameter can be a value of @ref TIM_Trigger_Polarity */
+  //   uint32_t  TriggerPrescaler;  /*!< Input trigger prescaler
+  //                                     This parameter can be a value of @ref TIM_Trigger_Prescaler */
+  //   uint32_t  TriggerFilter;     /*!< Input trigger filter
+  //                                     This parameter can be a number between Min_Data = 0x0 and Max_Data = 0xF  */
+
+  // } TIM_SlaveConfigTypeDef;
+
+  //   typedef struct  {
+  //   // Those 2 first fields must remain in this order at the beginning of the structure
+  //   void    *__this;
+  //   TIM_HandleTypeDef handle;
+  //   uint32_t preemptPriority;
+  //   uint32_t subPriority;
+  // } timerObj_t;
+  //TIM_SlaveTimer_SetConfig(TIM_HandleTypeDef *htim,TIM_SlaveConfigTypeDef *sSlaveConfig)
+  TIM_SlaveConfigTypeDef ssconfig;
+  HAL_TIM_SlaveConfigSynchro_IT(HT1->getHandle(),&ssconfig);
+  
   HT1->pause();
   HT1->refresh();
   HT2->pause();
